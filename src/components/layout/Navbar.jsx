@@ -42,6 +42,7 @@ export default function AppNavbar() {
             src="/logo.png"
             className="drop-shadow-[0_0_8px_rgba(37,99,235,0.5)] hover:scale-110 transition-transform duration-300"
             alt="SkillSphere Logo"
+            priority
             width={40}
             height={40}
           />
