@@ -12,7 +12,7 @@ export default function Footer() {
             A modern learning platform for the next generation of creative minds and tech leaders.
           </p>
         </div>
-        
+
         <div className="space-y-4">
           <h4 className="text-xs font-bold uppercase tracking-widest text-gray-900">Platform</h4>
           <ul className="flex flex-col gap-2 text-sm text-gray-500">
@@ -31,9 +31,9 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      
+
       <div className="container-custom mt-20 pt-8 border-t border-gray-100">
-        <p className="text-gray-400 text-[10px] font-medium tracking-wide">© 2024 SKILLSPHERE ACADEMY. ALL RIGHTS RESERVED.</p>
+        <p className="text-gray-400 text-[10px] font-medium tracking-wide">© 2026 SKILLSPHERE ACADEMY. ALL RIGHTS RESERVED.</p>
       </div>
     </footer>
   );
