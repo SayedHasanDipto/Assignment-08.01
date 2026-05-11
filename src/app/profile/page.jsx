@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Image } from "@heroui/image";
 import { Card, CardBody } from "@heroui/card";
+import { CircleCheck, LayoutPanelLeft, Lightbulb, Sun } from "lucide-react";
 
 export default function ProfilePage() {
   return (
@@ -25,7 +26,7 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div className="absolute bottom-1 z-10 right-1 bg-[#51e877] text-white p-1 rounded-full border-2 border-white">
-                  <span className="material-symbols-outlined text-[14px] fill-current">stars</span>
+                  <CircleCheck></CircleCheck>
                 </div>
               </div>
 
@@ -52,7 +53,7 @@ export default function ProfilePage() {
 
             <div className="bg-[#5b51e8] p-8 rounded-2xl text-white shadow-lg flex items-center gap-6">
               <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                <span className="material-symbols-outlined text-white text-2xl">auto_awesome</span>
+                <LayoutPanelLeft />
               </div>
               <div>
                 <h3 className="font-bold text-lg">SkillSphere Pro</h3>
@@ -102,9 +103,9 @@ export default function ProfilePage() {
                   </button>
                 </div>
 
-                <div className="mt-12 p-8 bg-[#f5f8ff] rounded-3xl flex gap-6 items-start border-l-4 border-[#5b51e8]">
+                <div className="mt-12 p-8 bg-[#f5f8ff] rounded-3xl  justify-center items-center flex gap-6 border-l-4 border-[#5b51e8]">
                   <div className="p-3 text-[#5b51e8]">
-                    <span className="material-symbols-outlined text-3xl">lightbulb</span>
+                    <Lightbulb className="w-10 h-10" />
                   </div>
                   <div className="space-y-1">
                     <h4 className="font-bold text-gray-800">Did you know?</h4>

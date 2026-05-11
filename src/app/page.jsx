@@ -9,7 +9,8 @@ import { Button } from "@heroui/button";
 import { Image } from "@heroui/image";
 import { Chip } from "@heroui/chip";
 import { motion } from "framer-motion";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Pencil, UsersRound } from "lucide-react";
+import { ArrowsRotateRight } from '@gravity-ui/icons';
 
 export default function Home() {
   const trendingCourses = [
@@ -93,7 +94,7 @@ export default function Home() {
               <div className="absolute top-17 left-50 p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
                 <GraduationCap className="w-60 h-60 text-white" />
               </div>
-              <span className="material-symbols-outlined text-[150px] text-white/10 absolute -top-8 -right-8 transition-transform duration-700 group-hover:rotate-12">psychology</span>
+              {/* <span className="material-symbols-outlined text-[150px] text-white/10 absolute -top-8 -right-8 transition-transform duration-700 group-hover:rotate-12">psychology</span> */}
               <h3 className="text-4xl font-bold text-white mb-6">The Pomodoro Technique</h3>
               <p className="text-white/50! font-medium leading-relaxed max-w-md">Maximize focus by breaking your study sessions into 25-minute intervals of deep work followed by short breaks.</p>
             </motion.div>
@@ -106,7 +107,7 @@ export default function Home() {
               >
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <span className="material-symbols-outlined text-white text-3xl">event_repeat</span>
+                    <ArrowsRotateRight className="w-7 h-7"></ArrowsRotateRight>
                   </div>
                   <span className="font-bold text-xl text-white">Spaced Repetition</span>
                 </div>
@@ -118,7 +119,9 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                   className="bg-[#f0f7ff] p-8 rounded-[40px] flex flex-col items-center justify-center text-center gap-4 border border-blue-50"
                 >
-                  <span className="material-symbols-outlined text-[#2563eb] text-3xl">edit_note</span>
+                  <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
+                    <Pencil />
+                  </div>
                   <div>
                     <h4 className="font-bold text-gray-900">Active Recall</h4>
                     <p className="text-[10px] text-gray-400 font-bold mt-1">Test yourself constantly to reinforce learning.</p>
@@ -128,7 +131,9 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                   className="bg-[#f0f7ff] p-8 rounded-[40px] flex flex-col items-center justify-center text-center gap-4 border border-blue-50"
                 >
-                  <span className="material-symbols-outlined text-[#2563eb] text-3xl">groups</span>
+                  <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
+                    <UsersRound />
+                  </div>
                   <div>
                     <h4 className="font-bold text-gray-900">Peer Learning</h4>
                     <p className="text-[10px] text-gray-400 font-bold mt-1">Explain concepts to others to deepen understanding.</p>
