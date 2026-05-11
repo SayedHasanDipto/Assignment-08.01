@@ -55,7 +55,7 @@ export default function CourseDetailPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-[#1e293b] max-w-2xl leading-tight">
             {course.title}
           </h1>
-          <Button 
+          <Button
             className="bg-[#5b51e8] text-white font-bold px-10 h-14 rounded-xl shadow-lg shadow-blue-500/20 flex items-center gap-3"
           >
             Enroll Now
@@ -66,8 +66,8 @@ export default function CourseDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Left Content */}
           <div className="lg:col-span-8 space-y-12">
-            <div className="relative overflow-hidden rounded-[32px] shadow-sm border border-gray-100 bg-white">
-              <Image 
+            <div className="relative overflow-hidden rounded-4xl shadow-sm border border-gray-100 bg-white">
+              <Image
                 src={course.image}
                 className="w-full aspect-video object-cover"
                 alt="Course Preview"
@@ -114,15 +114,15 @@ export default function CourseDetailPage() {
             </div>
 
             {/* Instructor Card */}
-            <div className="bg-[#f0f3ff] p-10 rounded-[32px] border border-blue-50 flex flex-col md:flex-row gap-8 items-center md:items-start relative overflow-hidden">
+            <div className="bg-[#f0f3ff] p-10 rounded-4xl border border-blue-50 flex flex-col md:flex-row gap-8 items-center md:items-start relative overflow-hidden">
               <div className="relative">
-                <Image 
+                <Image
                   src={course.instructorImage}
                   className="w-24 h-24 rounded-full border-4 border-white shadow-sm"
                   alt="Instructor"
                 />
                 <div className="absolute -bottom-1 -right-1 bg-[#5b51e8] text-white p-1 rounded-full border-2 border-white">
-                    <span className="material-symbols-outlined text-[10px] fill-current">stars</span>
+                  <span className="material-symbols-outlined text-[10px] fill-current">stars</span>
                 </div>
               </div>
               <div className="space-y-4 text-center md:text-left">
@@ -154,13 +154,12 @@ export default function CourseDetailPage() {
                     </div>
                     <div className="space-y-2">
                       {mod.lessons.map((lesson, j) => (
-                        <div 
-                          key={j} 
-                          className={`flex justify-between items-center p-4 rounded-xl transition-all cursor-pointer ${
-                            lesson.active 
-                              ? "bg-[#5b51e8] text-white shadow-lg shadow-blue-500/20" 
+                        <div
+                          key={j}
+                          className={`flex justify-between items-center p-4 rounded-xl transition-all cursor-pointer ${lesson.active
+                              ? "bg-[#5b51e8] text-white shadow-lg shadow-blue-500/20"
                               : "bg-[#f8faff] text-gray-500 hover:bg-[#f0f4ff]"
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-3">
                             <span className="material-symbols-outlined text-base">
