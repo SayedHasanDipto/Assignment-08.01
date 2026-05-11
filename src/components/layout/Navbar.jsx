@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 import { Link } from "@heroui/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -36,8 +37,15 @@ export default function AppNavbar() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden text-gray-900"
         />
-        <NavbarBrand>
-          <Link href="/" className="font-bold text-xl text-gray-900 tracking-tight">
+        <NavbarBrand className="flex items-center gap-4">
+          <Image
+            src="/logo.png"
+            className="drop-shadow-[0_0_8px_rgba(37,99,235,0.5)] hover:scale-110 transition-transform duration-300"
+            alt="SkillSphere Logo"
+            width={40}
+            height={40}
+          />
+          <Link href="/" className="font-bold text-xl pt-2 text-gray-900 tracking-tight">
             SkillSphere
           </Link>
         </NavbarBrand>
@@ -48,11 +56,10 @@ export default function AppNavbar() {
           <NavbarItem key={item.href}>
             <Link
               href={item.href}
-              className={`text-sm font-medium transition-colors ${
-                pathname === item.href
-                  ? "text-blue-600"
-                  : "text-gray-500 hover:text-gray-900"
-              }`}
+              className={`text-sm font-medium transition-colors ${pathname === item.href
+                ? "text-blue-600"
+                : "text-gray-500 hover:text-gray-900"
+                }`}
             >
               {item.label}
             </Link>
