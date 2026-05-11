@@ -30,8 +30,8 @@ export default function ProfilePage() {
               </div>
 
               <div className="text-center space-y-1 mb-8">
-                <h1 className="text-2xl font-bold text-gray-800">Alex Thompson</h1>
-                <p className="text-sm text-gray-400">alex.thompson@skillsphere.edu</p>
+                <h1 className="text-2xl font-bold text-gray-800">Sayed Hasan Dipto</h1>
+                <p className="text-sm text-gray-400">dev.sayedhasan@gmail.com</p>
               </div>
 
               <div className="w-full space-y-3 mb-8">
@@ -56,7 +56,7 @@ export default function ProfilePage() {
               </div>
               <div>
                 <h3 className="font-bold text-lg">SkillSphere Pro</h3>
-                <p className="text-xs text-white! opacity-70">Valid until December 2024</p>
+                <p className="text-xs text-white! opacity-70">Valid until December 2026</p>
               </div>
             </div>
           </aside>
