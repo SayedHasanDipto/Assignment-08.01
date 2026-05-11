@@ -3,8 +3,16 @@ import "./globals.css";
 import { Providers } from "@/components/providers/HeroUIProvider";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
 
 export const metadata = {
   title: "SkillSphere | Upgrade Your Skills Today",

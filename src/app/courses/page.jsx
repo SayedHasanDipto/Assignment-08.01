@@ -36,7 +36,7 @@ export default function CoursesPage() {
       const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(course.category);
       return matchesSearch && matchesCategory;
     });
-  }, [search, selectedCategories]);
+  }, [search, selectedCategories, allCourses]);
 
   const handleCategoryChange = (cat) => {
     if (selectedCategories.includes(cat)) {
@@ -76,7 +76,7 @@ export default function CoursesPage() {
               <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400">Categories</h3>
               <div className="flex flex-col gap-4">
                 {categories.map((cat) => (
-                  <Checkbox 
+                  <Checkbox
                     key={cat}
                     isSelected={selectedCategories.includes(cat)}
                     onValueChange={() => handleCategoryChange(cat)}
