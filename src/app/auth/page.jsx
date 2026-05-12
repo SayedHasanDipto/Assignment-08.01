@@ -17,7 +17,7 @@ export default function AuthPage() {
     try {
       if (isLogin) {
         await signIn.email({ email: form.email, password: form.password });
-        toast.success("Welcome back! 🎉");
+        toast.success("Welcome back!");
         router.push("/");
       } else {
         await signUp.email({
@@ -26,7 +26,7 @@ export default function AuthPage() {
           name: form.name,
           image: form.image || undefined,
         });
-        toast.success("Account created successfully! 🎉");
+        toast.success("Account created successfully!");
         router.push("/");
       }
     } catch (err) {
@@ -38,13 +38,13 @@ export default function AuthPage() {
           message.toLowerCase().includes("not found") ||
           message.toLowerCase().includes("credentials")
         ) {
-          toast.error("Account পাওয়া যায়নি! আগে Sign Up করুন।");
+          toast.error("Invalid email or password! Please try again.");
         } else {
           toast.error(message);
         }
       } else {
         if (message.toLowerCase().includes("already exists")) {
-          toast.error("এই Email দিয়ে আগেই account আছে! Sign In করুন।");
+          toast.error("An account with this email already exists! Please sign in.");
         } else {
           toast.error(message);
         }

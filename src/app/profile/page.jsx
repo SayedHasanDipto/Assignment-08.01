@@ -144,7 +144,7 @@ export default function ProfilePage() {
 
                 {success && (
                   <p className="text-green-500 text-sm font-semibold">
-                    ✅ Profile updated successfully!
+                    Profile updated successfully!
                   </p>
                 )}
 
