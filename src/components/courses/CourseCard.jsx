@@ -39,8 +39,8 @@ export default function CourseCard({ course }) {
             </h3>
             <div className="flex items-center gap-2">
               <Image
-                src={course.image}
-                className="w-6 h-6 rounded-full grayscale"
+                src={course.instructorImgUrl}
+                className="w-6 h-6 rounded-full"
                 alt={course.instructor}
               />
               <span className="text-xs text-gray-500 font-medium">
