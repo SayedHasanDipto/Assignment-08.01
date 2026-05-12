@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@heroui/button";
 import { Image } from "@heroui/image";
 import { Chip } from "@heroui/chip";
+import { CircleCheck, MoveRight } from "lucide-react";
 
 export default function CourseDetailPage() {
   const course = {
@@ -58,8 +59,8 @@ export default function CourseDetailPage() {
           <Button
             className="bg-[#5b51e8] text-white font-bold px-10 h-14 rounded-xl shadow-lg shadow-blue-500/20 flex items-center gap-3"
           >
-            Enroll Now
-            <span className="material-symbols-outlined text-lg">arrow_forward</span>
+            Enroll
+            <MoveRight />
           </Button>
         </div>
 
@@ -106,7 +107,7 @@ export default function CourseDetailPage() {
                   "Advanced Figma prototyping techniques"
                 ].map((item, i) => (
                   <div key={i} className="flex gap-3 items-center">
-                    <span className="material-symbols-outlined text-[#5b51e8] text-[18px]">check_circle</span>
+                    <CircleCheck></CircleCheck>
                     <span className="text-xs font-bold text-gray-600">{item}</span>
                   </div>
                 ))}
@@ -157,8 +158,8 @@ export default function CourseDetailPage() {
                         <div
                           key={j}
                           className={`flex justify-between items-center p-4 rounded-xl transition-all cursor-pointer ${lesson.active
-                              ? "bg-[#5b51e8] text-white shadow-lg shadow-blue-500/20"
-                              : "bg-[#f8faff] text-gray-500 hover:bg-[#f0f4ff]"
+                            ? "bg-[#5b51e8] text-white shadow-lg shadow-blue-500/20"
+                            : "bg-[#f8faff] text-gray-500 hover:bg-[#f0f4ff]"
                             }`}
                         >
                           <div className="flex items-center gap-3">

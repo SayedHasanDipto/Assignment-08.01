@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Image } from "@heroui/image";
 import { Card, CardBody } from "@heroui/card";
-import { CircleCheck, LayoutPanelLeft, Lightbulb, Sun } from "lucide-react";
+import { BadgeCheck, CircleCheck, LayoutPanelLeft, Lightbulb, Sun } from "lucide-react";
 
 export default function ProfilePage() {
   return (
@@ -26,7 +26,7 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div className="absolute bottom-1 z-10 right-1 bg-[#51e877] text-white p-1 rounded-full border-2 border-white">
-                  <CircleCheck></CircleCheck>
+                  <BadgeCheck />
                 </div>
               </div>
 

@@ -2,7 +2,7 @@
 
 import { Image } from "@heroui/image";
 import { motion } from "framer-motion";
-import { CircleCheck } from "lucide-react";
+import { BadgeCheck, CircleCheck } from "lucide-react";
 
 export default function InstructorCard({ instructor }) {
   return (
@@ -23,7 +23,7 @@ export default function InstructorCard({ instructor }) {
           />
         </div>
         <div className="absolute bottom-1 z-10 right-1 bg-[#51e877] text-white p-1 rounded-full border-2 border-white shadow-sm">
-          <span className="material-symbols-outlined text-[10px] fill-current"><CircleCheck></CircleCheck> </span>
+          <span className="material-symbols-outlined text-[10px] fill-current"><BadgeCheck /> </span>
         </div>
       </div>
       <h3 className="text-sm font-bold text-gray-900 mb-1">{instructor.name}</h3>
