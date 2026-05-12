@@ -2,28 +2,32 @@
 
 import React from "react";
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Button,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
+  Navbar, NavbarBrand, NavbarContent, NavbarItem, Button,
+  NavbarMenuToggle, NavbarMenu, NavbarMenuItem,
+  Avatar, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,
 } from "@heroui/react";
 import { Link } from "@heroui/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+import { useSession, signOut } from "@/lib/auth-client";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session } = useSession();
+  const user = session?.user;
 
   const menuItems = [
     { label: "Home", href: "/" },
     { label: "Courses", href: "/courses" },
     { label: "My Profile", href: "/profile" },
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/");
+  };
 
   return (
     <Navbar
@@ -57,9 +61,7 @@ export default function AppNavbar() {
           <NavbarItem key={item.href}>
             <Link
               href={item.href}
-              className={`text-sm font-medium transition-colors ${pathname === item.href
-                ? "text-blue-600"
-                : "text-gray-500 hover:text-gray-900"
+              className={`text-sm font-medium transition-colors ${pathname === item.href ? "text-blue-600" : "text-gray-500 hover:text-gray-900"
                 }`}
             >
               {item.label}
@@ -69,25 +71,44 @@ export default function AppNavbar() {
       </NavbarContent>
 
       <NavbarContent justify="end" className="gap-3">
-        <NavbarItem>
-          <Button
-            as={Link}
-            variant="light"
-            href="/auth"
-            className="text-sm font-medium text-gray-900 rounded-full px-6 border border-gray-200"
-          >
-            Sign In
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            as={Link}
-            href="/auth"
-            className="bg-gray-900 text-white font-medium px-6 h-10 rounded-full text-sm"
-          >
-            Sign Up
-          </Button>
-        </NavbarItem>
+        {user ? (
+          <div className="flex items-center gap-2">
+            <Avatar
+              as="button"
+              className="cursor-pointer border border-gray-200"
+              size="sm"
+              name={user.name}
+              src={user.image ?? undefined}
+            />
+            <Button
+              onPress={handleSignOut}
+              className="rounded-full text-xs font-semibold px-4">
+              Log Out
+            </Button>
+          </div>
+        ) : (
+          <>
+            <NavbarItem>
+              <Button
+                as={Link}
+                variant="light"
+                href="/auth"
+                className="text-sm font-medium text-gray-900 rounded-full px-6 border border-gray-200"
+              >
+                Sign In
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                as={Link}
+                href="/auth"
+                className="bg-gray-900 text-white font-medium px-6 h-10 rounded-full text-sm"
+              >
+                Sign Up
+              </Button>
+            </NavbarItem>
+          </>
+        )}
       </NavbarContent>
 
       <NavbarMenu className="bg-white pt-6">

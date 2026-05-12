@@ -1,27 +1,61 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Image } from "@heroui/image";
-import { Card, CardBody } from "@heroui/card";
-import { BadgeCheck, CircleCheck, LayoutPanelLeft, Lightbulb, Sun } from "lucide-react";
+import { Card } from "@heroui/card";
+import { BadgeCheck, LayoutPanelLeft, Lightbulb } from "lucide-react";
+import { useSession, updateUser } from "@/lib/auth-client";
 
 export default function ProfilePage() {
+  const { data: session, isPending } = useSession();
+  const user = session?.user;
+
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  React.useEffect(() => {
+    if (user?.name) setName(user.name);
+    if (user?.image) setImage(user.image);
+  }, [user?.name, user?.image]);
+
+  const handleUpdate = async () => {
+    setSaving(true);
+    setSuccess(false);
+    try {
+      await updateUser({ name, image });
+      setSuccess(true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (isPending) {
+    return (
+      <div className="min-h-screen bg-[#f8faff] flex items-center justify-center">
+        <p className="text-gray-400 font-medium">Loading...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#f8faff]">
       <Navbar />
       <main className="container-custom py-16">
         <div className="grid my-20 grid-cols-1 lg:grid-cols-12 gap-8">
 
-          {/* Left Sidebar - Profile Card */}
           <aside className="lg:col-span-4 space-y-6">
             <Card className="bg-white border-none shadow-sm rounded-3xl p-10 flex flex-col items-center">
               <div className="relative mb-8">
                 <div className="w-32 h-32 rounded-full border-4 border-[#3b82f6] p-1">
                   <Image
-                    src="https://i.ibb.co/FL6H0BN7/pfp.jpg"
-                    alt="Sayed Hasan Dipto"
+                    src={image || user?.image || "https://i.ibb.co/FL6H0BN7/pfp.jpg"}
+                    alt={name || user?.name || "Profile"}
                     className="w-full h-full rounded-full object-cover"
                   />
                 </div>
@@ -31,8 +65,8 @@ export default function ProfilePage() {
               </div>
 
               <div className="text-center space-y-1 mb-8">
-                <h1 className="text-2xl font-bold text-gray-800">Sayed Hasan Dipto</h1>
-                <p className="text-sm text-gray-400">dev.sayedhasan@gmail.com</p>
+                <h1 className="text-2xl font-bold text-gray-800">{name || user?.name}</h1>
+                <p className="text-sm text-gray-400">{user?.email}</p>
               </div>
 
               <div className="w-full space-y-3 mb-8">
@@ -46,8 +80,12 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              <button className="w-full bg-[#ff9500] text-white font-bold py-4 rounded-xl shadow-md hover:opacity-90 transition-opacity">
-                Update Information
+              <button
+                onClick={handleUpdate}
+                disabled={saving}
+                className="w-full bg-[#ff9500] text-white font-bold py-4 rounded-xl shadow-md hover:opacity-90 transition-opacity disabled:opacity-60"
+              >
+                {saving ? "Saving..." : "Update Information"}
               </button>
             </Card>
 
@@ -57,17 +95,16 @@ export default function ProfilePage() {
               </div>
               <div>
                 <h3 className="font-bold text-lg">SkillSphere Pro</h3>
-                <p className="text-xs text-white! opacity-70">Valid until December 2026</p>
+                <p className="text-xs opacity-70">Valid until December 2026</p>
               </div>
             </div>
           </aside>
 
-          {/* Right Content - Edit Profile */}
           <section className="lg:col-span-8">
             <Card className="bg-white border-none shadow-sm rounded-3xl p-12 h-full">
               <div className="mb-10">
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">Edit Your Profile</h2>
-                <p className="text-sm text-gray-500">Update your public identity and account settings to keep your profile fresh.</p>
+                <p className="text-sm text-gray-500">Update your public identity and account settings.</p>
               </div>
 
               <div className="space-y-8">
@@ -75,7 +112,9 @@ export default function ProfilePage() {
                   <label className="text-sm font-bold text-gray-600 block">Full Name</label>
                   <input
                     type="text"
-                    placeholder="Sayed Hasan Dipto"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your name"
                     className="w-full h-14 px-6 rounded-xl border border-gray-200 focus:border-[#5b51e8] outline-none text-gray-700 font-medium"
                   />
                 </div>
@@ -85,25 +124,44 @@ export default function ProfilePage() {
                   <div className="flex gap-4">
                     <input
                       type="text"
-                      placeholder="https://i.ibb.co/FL6H0BN7/pfp.jpg"
+                      value={image}
+                      onChange={(e) => setImage(e.target.value)}
+                      placeholder="https://example.com/photo.jpg"
                       className="grow h-14 px-6 rounded-xl border border-gray-200 focus:border-[#5b51e8] outline-none text-gray-700 font-medium"
                     />
                     <div className="w-14 h-14 rounded-xl bg-gray-900 flex items-center justify-center overflow-hidden">
-                      <Image src="https://i.ibb.co/FL6H0BN7/pfp.jpg" alt="P" className="w-full h-full object-cover" />
+                      <Image
+                        src={image || user?.image || "https://i.ibb.co/FL6H0BN7/pfp.jpg"}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                 </div>
 
+                {success && (
+                  <p className="text-green-500 text-sm font-semibold">
+                    ✅ Profile updated successfully!
+                  </p>
+                )}
+
                 <div className="flex gap-4 items-center pt-4">
-                  <button className="bg-[#5b51e8] text-white font-bold h-14 px-10 rounded-xl shadow-md hover:opacity-90 transition-opacity">
-                    Update Information
+                  <button
+                    onClick={handleUpdate}
+                    disabled={saving}
+                    className="bg-[#5b51e8] text-white font-bold h-14 px-10 rounded-xl shadow-md hover:opacity-90 transition-opacity disabled:opacity-60"
+                  >
+                    {saving ? "Saving..." : "Update Information"}
                   </button>
-                  <button className="text-[#5b51e8] font-bold h-14 px-8 rounded-xl hover:bg-gray-50 transition-colors">
+                  <button
+                    onClick={() => { setName(user?.name || ""); setImage(user?.image || ""); }}
+                    className="text-[#5b51e8] font-bold h-14 px-8 rounded-xl hover:bg-gray-50 transition-colors"
+                  >
                     Cancel
                   </button>
                 </div>
 
-                <div className="mt-12 p-8 bg-[#f5f8ff] rounded-3xl  justify-center items-center flex gap-6 border-l-4 border-[#5b51e8]">
+                <div className="mt-12 p-8 bg-[#f5f8ff] rounded-3xl justify-center items-center flex gap-6 border-l-4 border-[#5b51e8]">
                   <div className="p-3 text-[#5b51e8]">
                     <Lightbulb className="w-10 h-10" />
                   </div>
