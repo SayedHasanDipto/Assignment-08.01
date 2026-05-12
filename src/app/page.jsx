@@ -11,6 +11,7 @@ import { Chip } from "@heroui/chip";
 import { motion } from "framer-motion";
 import { GraduationCap, Pencil, UsersRound } from "lucide-react";
 import { ArrowsRotateRight } from '@gravity-ui/icons';
+import Link from "next/link";
 
 export default function Home() {
   const trendingCourses = [
@@ -252,12 +253,16 @@ export default function Home() {
                 SkillSphere brings world-class education to your fingertips. Join over 2 million students today.
               </p>
               <div className="flex justify-center md:justify-start gap-4 pt-4">
-                <Button size="lg" className="bg-blue-600 text-white font-bold px-10 h-16 rounded-2xl shadow-lg shadow-blue-500/20 hover:scale-105 transition-all">
-                  Get Started
-                </Button>
-                <Button size="lg" variant="light" className="text-gray-900 font-bold px-10 h-16 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-all">
-                  Browse Courses
-                </Button>
+                <Link href="/auth">
+                  <Button size="lg" className="bg-blue-600 text-white font-bold px-10 h-16 rounded-2xl shadow-lg shadow-blue-500/20 hover:scale-105 transition-all">
+                    Get Started
+                  </Button>
+                </Link>
+                <Link href="/courses">
+                  <Button size="lg" variant="light" className="text-gray-900 font-bold px-10 h-16 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-all">
+                    Browse Courses
+                  </Button>
+                </Link>
               </div>
             </motion.div>
             <motion.div
