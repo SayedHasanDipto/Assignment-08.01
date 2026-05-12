@@ -17,10 +17,13 @@ export default function ProfilePage() {
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const userName = user?.name ?? "";
+  const userImage = user?.image ?? "";
+
   React.useEffect(() => {
-    if (user?.name) setName(user.name);
-    if (user?.image) setImage(user.image);
-  }, [user?.name, user?.image]);
+    setName(userName);
+    setImage(userImage);
+  }, [userName, userImage]);
 
   const handleUpdate = async () => {
     setSaving(true);

@@ -22,6 +22,7 @@ export default function AppNavbar() {
     { label: "Home", href: "/" },
     { label: "Courses", href: "/courses" },
     { label: "My Profile", href: "/profile" },
+    { label: "Get Started", href: "/auth" },
   ];
 
   const handleSignOut = async () => {
@@ -41,7 +42,7 @@ export default function AppNavbar() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden text-gray-900"
         />
-        <NavbarBrand className="flex items-center gap-4">
+        <NavbarBrand className="flex max-sm:justify-center items-center gap-4">
           <Image
             src="/logo.png"
             className="drop-shadow-[0_0_8px_rgba(37,99,235,0.5)] hover:scale-110 transition-transform duration-300"
@@ -56,7 +57,7 @@ export default function AppNavbar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-8" justify="center">
+      <NavbarContent className="max-sm:hidden! sm:flex gap-8" justify="center">
         {menuItems.map((item) => (
           <NavbarItem key={item.href}>
             <Link
@@ -66,11 +67,12 @@ export default function AppNavbar() {
             >
               {item.label}
             </Link>
+
           </NavbarItem>
         ))}
       </NavbarContent>
 
-      <NavbarContent justify="end" className="gap-3">
+      <NavbarContent justify="end" className="gap-3 max-sm:hidden! sm:flex">
         {user ? (
           <div className="flex items-center gap-2">
             <Avatar
