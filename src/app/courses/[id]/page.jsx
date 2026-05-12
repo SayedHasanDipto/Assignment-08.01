@@ -320,7 +320,7 @@ export default function CourseDetailPage() {
               </div>
               <div className="space-y-8">
                 {course.courseCurriculum.map((item, i) => (
-                  <div key={i} className="flex gap-2 items-center items-start">
+                  <div key={i} className="flex gap-2 items-center">
                     <LockKeyholeIcon className="text-gray-500 text-md" />
                     <span className="text-gray-700">{item}</span>
                   </div>
