@@ -114,23 +114,20 @@ export default function AuthPage() {
               <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">Password</label>
               <input
                 type="password"
-                placeholder="••••••••"
+                placeholder="********"
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                 className="w-full h-14 px-5 rounded-2xl border border-gray-200 text-gray-900 text-sm font-medium focus:outline-none focus:border-[#5b51e8] transition-all"
               />
             </div>
-
             {isLogin && (
               <div className="text-right">
                 <button className="text-xs font-bold text-[#5b51e8]">Forgot password?</button>
               </div>
             )}
-
             {error && (
               <p className="text-red-500 text-sm font-medium text-center">{error}</p>
             )}
-
             <Button
               fullWidth
               onClick={handleSubmit}
@@ -140,13 +137,11 @@ export default function AuthPage() {
               {isLogin ? "Sign In" : "Create Account"}
             </Button>
           </div>
-
           <div className="flex items-center gap-4">
             <div className="flex-1 h-px bg-gray-100"></div>
             <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Or continue with</span>
             <div className="flex-1 h-px bg-gray-100"></div>
           </div>
-
           <div className="flex w-full gap-4">
             <button
               onClick={handleGoogle}
@@ -156,7 +151,6 @@ export default function AuthPage() {
               Google
             </button>
           </div>
-
           <p className="text-center text-xs font-medium text-gray-400">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button onClick={() => setIsLogin(!isLogin)} className="font-bold text-[#5b51e8]">
