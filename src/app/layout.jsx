@@ -2,6 +2,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers/HeroUIProvider";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "SkillSphere - Learn from the Best, Anywhere",
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
+        <Toaster position="top-center" />
         <Providers>
           <SmoothScroll>{children}</SmoothScroll>
         </Providers>

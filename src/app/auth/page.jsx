@@ -4,20 +4,20 @@ import { signIn, signUp } from "../../lib/auth-client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from '@heroui/react';
+import toast from "react-hot-toast";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({ name: "", email: "", password: "", image: "" });
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async () => {
     setLoading(true);
-    setError("");
     try {
       if (isLogin) {
         await signIn.email({ email: form.email, password: form.password });
+        toast.success("Welcome back! 🎉");
         router.push("/");
       } else {
         await signUp.email({
@@ -26,10 +26,29 @@ export default function AuthPage() {
           name: form.name,
           image: form.image || undefined,
         });
+        toast.success("Account created successfully! 🎉");
         router.push("/");
       }
     } catch (err) {
-      setError(err?.message || "Something went wrong");
+      const message = err?.message || "Something went wrong";
+
+      if (isLogin) {
+        if (
+          message.toLowerCase().includes("invalid") ||
+          message.toLowerCase().includes("not found") ||
+          message.toLowerCase().includes("credentials")
+        ) {
+          toast.error("Account পাওয়া যায়নি! আগে Sign Up করুন।");
+        } else {
+          toast.error(message);
+        }
+      } else {
+        if (message.toLowerCase().includes("already exists")) {
+          toast.error("এই Email দিয়ে আগেই account আছে! Sign In করুন।");
+        } else {
+          toast.error(message);
+        }
+      }
     } finally {
       setLoading(false);
     }
@@ -37,9 +56,6 @@ export default function AuthPage() {
 
   const handleGoogle = () =>
     signIn.social({ provider: "google", callbackURL: "/" });
-
-  const handleGithub = () =>
-    signIn.social({ provider: "github", callbackURL: "/" });
 
   return (
     <div className="min-h-screen bg-[#f8faff] flex flex-col">
@@ -120,14 +136,13 @@ export default function AuthPage() {
                 className="w-full h-14 px-5 rounded-2xl border border-gray-200 text-gray-900 text-sm font-medium focus:outline-none focus:border-[#5b51e8] transition-all"
               />
             </div>
+
             {isLogin && (
               <div className="text-right">
                 <button className="text-xs font-bold text-[#5b51e8]">Forgot password?</button>
               </div>
             )}
-            {error && (
-              <p className="text-red-500 text-sm font-medium text-center">{error}</p>
-            )}
+
             <Button
               fullWidth
               onClick={handleSubmit}
@@ -137,11 +152,13 @@ export default function AuthPage() {
               {isLogin ? "Sign In" : "Create Account"}
             </Button>
           </div>
+
           <div className="flex items-center gap-4">
             <div className="flex-1 h-px bg-gray-100"></div>
             <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Or continue with</span>
             <div className="flex-1 h-px bg-gray-100"></div>
           </div>
+
           <div className="flex w-full gap-4">
             <button
               onClick={handleGoogle}
@@ -151,6 +168,7 @@ export default function AuthPage() {
               Google
             </button>
           </div>
+
           <p className="text-center text-xs font-medium text-gray-400">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button onClick={() => setIsLogin(!isLogin)} className="font-bold text-[#5b51e8]">
